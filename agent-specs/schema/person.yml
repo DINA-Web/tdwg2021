@@ -200,7 +200,8 @@ components:
               nullable: true
               type: string
               format: uri
-              description: https://github.com/DINA-Web      
+              description: person's webpage
+              example: https://github.com/DINA-Web      
             remarks:
               nullable: true                                                                          
               type: string

@@ -28,5 +28,5 @@ components:
       type: oauth2
       flows: 
         password:
-          tokenUrl: http://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
+          tokenUrl: https://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
           scopes: {}

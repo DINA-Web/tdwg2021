@@ -203,4 +203,4 @@ components:
               format: date-time                            
               readOnly: true
               description: "date and time when the organization record was created in ISO format"
-              example: 1985-04-12T23:20:50.52Z
+              example: "1985-04-12T23:20:50.52Z"

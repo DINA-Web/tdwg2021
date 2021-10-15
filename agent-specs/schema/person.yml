@@ -185,15 +185,17 @@ components:
               format: date-time                            
               readOnly: true
               description: "date and time when the person record was created in ISO format"
-              example:  1985-04-12T23:20:50.52Z
+              example:  "1985-04-12T23:20:50.52Z"
             givenNames:
               nullable: true
               type: string
-              description: Jane           
+              description: person's given names
+              example: Jane           
             familyNames:
               nullable: true                                                                          
               type: string
-              description: Doe
+              description: person's family names
+              example: Doe
             webpage:
               nullable: true
               type: string
@@ -203,7 +205,7 @@ components:
               nullable: true                                                                          
               type: string
               description: remark of the person
-              example: this is a mock remarka
+              example: this is a mock remarks
             aliases:
               nullable: true
               description: given aliases for a person

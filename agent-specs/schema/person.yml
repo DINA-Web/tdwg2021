@@ -1,0 +1,242 @@
+paths:
+  /agent/api/v1/person:
+    get:
+      summary: List persons
+      operationId: getPersons
+      description: By passing in query string, user can get available persons authorised
+      parameters:
+        - in: query
+          name: filter[rsql]
+          description: pass an optional search string for looking up the persons
+          schema:
+            type: string
+        - in: query
+          name: sort
+          description: optional sort order string, such as descending, denoted by "-"
+          schema:
+            type: string
+        - in: query
+          name: page[offset]
+          description: number of records to skip when paging
+          schema:
+            type: integer
+            format: int32
+        - in: query
+          name: page[limit]
+          description: maximum number of records to return when paging
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            maximum: 50
+      responses:
+        '200':
+          description: persons satifying the query restrictions
+          content:
+            application/vnd.api+json:
+              schema:
+                type: array
+                items: 
+                  $ref: '#/components/schemas/Person'                
+        '404':
+          description: person not found
+    post:
+      summary: Add a person
+      operationId: addPerson
+      description: Add a person
+      responses:
+        '201':
+          description: person created
+        '422':
+          description: Data integrity violation          
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/NewPerson'
+        description: Person to add
+  /agent/api/v1/person/{Id}:
+    get:
+      summary: Get a person
+      description: Return a single person
+      operationId: getPersonById
+      parameters:
+        - name: Id
+          in: path
+          description: ID of person to return
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/vnd.api+json:
+              schema:          
+                $ref: '#/components/schemas/Person'
+        '400':
+          description: Not a valid uuid                
+        '404':
+          description: Person not found          
+    patch:
+      summary: Update a person
+      operationId: updatePerson
+      description: Update a person
+      parameters:
+        - name: Id
+          in: path
+          description: person id to patch
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: person updated
+        '400':
+          description: invalid input, object invalid
+      requestBody:
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/Person'
+        description: person to add
+    delete:
+      summary: Delete a person
+      operationId: deletePerson
+      description: Delete a person
+      parameters:
+        - name: Id
+          in: path
+          description: person id to delete
+          required: true
+          schema:
+            type: string
+            format: uuid            
+      responses:
+        '200':
+          description: person marked as deleted
+        '400':
+          description: Not a valid uuid          
+        '404':
+          description: person not found       
+components:
+  schemas:
+    Person:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          required:
+            - id
+          properties:
+            id:
+              type: string
+              format: uuid
+              example: d290f1ee-6c54-4b01-90e6-d701748f0851
+              description: Identifier of the object as UUID
+          allOf:
+            - $ref: '#/components/schemas/CommonPerson'
+
+    NewPerson:
+      type: object
+      required:
+        - data
+      properties:
+        data:
+          type: object
+          allOf:
+            - $ref: '#/components/schemas/CommonPerson'
+
+    CommonPerson:
+      type: object
+      required:
+        - type
+        - attributes       
+      properties:            
+        type:
+          enum: [person]      
+          description: The type of data being returned.
+        attributes:
+          type: object
+          required:
+            - displayName
+            - email
+          properties:
+            displayName:
+              type: string
+              description: display name of the person
+            email:
+              type: string  
+              description: person email
+            createdBy:
+              type: string      
+              readOnly: true
+              description: authenticated user who create the person record
+            createdOn:              
+              type: string
+              format: date-time                            
+              readOnly: true
+              description: "date and time when the person record was created in ISO format"
+              example:  1985-04-12T23:20:50.52Z
+            givenNames:
+              nullable: true
+              type: string
+              description: person's given names            
+            familyNames:
+              nullable: true                                                                          
+              type: string
+              description: person's family names
+            webpage:
+              nullable: true
+              type: string
+              format: uri
+              description: person's webpage          
+            remarks:
+              nullable: true                                                                          
+              type: string
+              description: remark of the person
+            aliases:
+              nullable: true
+              description: given aliases for a person
+              type: array
+              items:
+                type: string
+            identifiers:
+              type: array
+              nullable: true
+              items:
+                type: object
+                properties:
+                  type:
+                    enum: [ORCID, WIKIDATA]
+                  uri:
+                    type: string
+                    format: uri
+
+        relationships:
+          type: object
+          required:
+            - organizations
+          properties:
+            organizations:
+              type: object
+              properties:
+                data:
+                  type: array
+                  items:
+                    type: object
+                    required: 
+                      - type
+                      - id
+                    properties:
+                      type:
+                        enum: [organization]
+                      id: 
+                        type: string
+                        format: uuid
+                        description: person's organization id
+                        example: a600f9da-fcbe-4fef-9ae3-0f131ca05e0c

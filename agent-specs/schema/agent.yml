@@ -1,0 +1,32 @@
+openapi: 3.0.0
+servers:
+  - description: DINA - AAFC
+    url: https://api.demo.dina-project.net
+info:
+  description: Agent API Schema
+  version: "0.1.0"
+  title: Agent Schema - DRAFT
+  contact:
+    email: dina-aafc@canada.ca
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+security:
+  - OAuth2: []       
+paths:
+  /agent/api/v1/person:
+    $ref: 'person.yml#/paths/~1agent~1api~1v1~1person'
+  /agent/api/v1/person/{Id}:
+    $ref: 'person.yml#/paths/~1agent~1api~1v1~1person~1{Id}'  
+  /agent/api/v1/organization:
+    $ref: 'organization.yml#/paths/~1agent~1api~1v1~1organization'    
+  /agent/api/v1/organization/{Id}:
+    $ref: 'organization.yml#/paths/~1agent~1api~1v1~1organization~1{Id}'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows: 
+        password:
+          tokenUrl: https://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
+          scopes: {}

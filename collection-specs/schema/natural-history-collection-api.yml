@@ -11,7 +11,8 @@ info:
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
-   
+security:
+  - OAuth2: []      
 paths:
   /collection/api/v1/collecting-event:
     $ref: 'collectingEvent.yml#/paths/~1collection~1api~1v1~1collecting-event'
@@ -49,3 +50,11 @@ paths:
     $ref: 'storageUnitType.yml#/paths/~1collection~1api~1v1~1storage-unit-type'
   /collection/api/v1/storage-unit-type/{Id}:
     $ref: 'storageUnitType.yml#/paths/~1collection~1api~1v1~1storage-unit-type~1{Id}'
+components:
+  securitySchemes:
+    OAuth2:
+      type: oauth2
+      flows: 
+        password:
+          tokenUrl: https://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
+          scopes: {}

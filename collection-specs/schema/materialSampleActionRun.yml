@@ -27,7 +27,7 @@ paths:
             type: object
             additionalProperties: true
             example:
-              group: "aafc"
+              createdBy: "aafc"
           style: deepObject
         - in: query
           name: filter[rsql]

@@ -29,4 +29,5 @@ components:
       flows: 
         password:
           tokenUrl: https://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
+          refreshUrl: https://auth.demo.dina-project.net/auth/realms/dina/protocol/openid-connect/token
           scopes: {}

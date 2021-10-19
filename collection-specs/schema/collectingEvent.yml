@@ -21,6 +21,16 @@ paths:
       description: By passing in query string, user can get available collecting events authorised
       parameters:
         - in: query
+          name: filter
+          required: false
+          schema:
+            type: object
+            additionalProperties: true
+            example:
+              verbatimEventDateTime: "2021-10-19"
+              dwcCountryCode: "CA"
+          style: deepObject
+        - in: query
           name: filter[rsql]
           description: pass an optional search string for looking up the collecting events
           schema:

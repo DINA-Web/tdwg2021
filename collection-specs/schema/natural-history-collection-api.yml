@@ -1,13 +1,13 @@
 openapi: 3.0.0
 servers:
   - description: DINA - AAFC
-    url: https://virtserver.dina-aafc.com/AAFC/1.0.0
+    url: https://api.demo.dina-project.net
 info:
   description: Collection API Schema
   version: "0.1.0"
   title: Collection Schema - DRAFT
   contact:
-    email: dina-aafc@canada.ca
+    email: info@dina-project.net
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'

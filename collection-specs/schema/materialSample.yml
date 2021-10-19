@@ -21,6 +21,15 @@ paths:
       description: By passing in query string, user can get available material samples authorised
       parameters:
         - in: query
+          name: filter
+          required: false
+          schema:
+            type: object
+            additionalProperties: true
+            example:
+              dwcCatalogNumber: "A-1234"
+          style: deepObject
+        - in: query
           name: filter[rsql]
           description: pass an optional search string for looking up the material samples
           schema:

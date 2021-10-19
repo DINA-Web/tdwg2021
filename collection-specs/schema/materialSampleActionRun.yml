@@ -21,6 +21,15 @@ paths:
       description: By passing in query string, user can get available material sample action runs authorised
       parameters:
         - in: query
+          name: filter
+          required: false
+          schema:
+            type: object
+            additionalProperties: true
+            example:
+              group: "aafc"
+          style: deepObject
+        - in: query
           name: filter[rsql]
           description: pass an optional search string for looking up the material sample action runs
           schema:

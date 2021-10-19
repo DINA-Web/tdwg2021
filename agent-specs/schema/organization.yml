@@ -14,7 +14,7 @@ paths:
             type: object
             additionalProperties: true
             example:
-              group: "aafc"
+              aliases: "aafc"
           style: deepObject
         - in: query
           name: filter[rsql]

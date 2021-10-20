@@ -25,9 +25,6 @@ paths:
           required: false
           schema:
             type: object
-            additionalProperties: true
-            example:
-              name: "boiled"
           style: deepObject
         - in: query
           name: filter[rsql]

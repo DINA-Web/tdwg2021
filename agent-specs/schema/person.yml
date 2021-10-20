@@ -13,8 +13,6 @@ paths:
           schema:
             type: object
             additionalProperties: true
-            example:
-              name: "Jim"
           style: deepObject
         - in: query
           name: filter[rsql]

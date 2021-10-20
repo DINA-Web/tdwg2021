@@ -25,10 +25,6 @@ paths:
           required: false
           schema:
             type: object
-            additionalProperties: true
-            example:
-              verbatimEventDateTime: "2021-10-19"
-              dwcCountryCode: "CA"
           style: deepObject
         - in: query
           name: filter[rsql]

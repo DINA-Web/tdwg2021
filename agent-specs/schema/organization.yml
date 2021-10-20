@@ -12,9 +12,6 @@ paths:
           required: false
           schema:
             type: object
-            additionalProperties: true
-            example:
-              group: "aafc"
           style: deepObject
         - in: query
           name: filter[rsql]

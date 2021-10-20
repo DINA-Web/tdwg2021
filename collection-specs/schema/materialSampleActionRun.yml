@@ -25,12 +25,6 @@ paths:
           required: false
           schema:
             type: object
-<<<<<<< HEAD
-=======
-            additionalProperties: true
-            example:
-              createdBy: "aafc"
->>>>>>> upstream/main
           style: deepObject
         - in: query
           name: filter[rsql]
